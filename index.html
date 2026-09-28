@@ -213,10 +213,14 @@
     }
 
     /* Video finishes */
-    video.addEventListener("ended", enterWebsite);
+    video.addEventListener("ended", function() {
+  window.location.href = "magical-cannabunny-research.html";
+});
 
     /* Skip button */
-    skip.addEventListener("click", enterWebsite);
+    skip.addEventListener("click", function() {
+  window.location.href = "magical-cannabunny-research.html";
+});
 
     /* ENTER THE MAGICAL GARDEN */
 enterGarden.addEventListener("click", function() {
