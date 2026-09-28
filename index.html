@@ -219,13 +219,15 @@
     skip.addEventListener("click", enterWebsite);
 
     /* ENTER THE MAGICAL GARDEN */
-    enterGarden.addEventListener("click", enterWebsite);
+enterGarden.addEventListener("click", function() {
+  window.location.href = "magical-cannabunny-research.html";
+});
 
-    /* Extra iPhone touch support */
-    enterGarden.addEventListener("touchend", function(event) {
-      event.preventDefault();
-      enterWebsite();
-    });
+/* Extra iPhone touch support */
+enterGarden.addEventListener("touchend", function(event) {
+  event.preventDefault();
+  window.location.href = "magical-cannabunny-research.html";
+});
   </script>
 
 </body>
