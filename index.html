@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Magical Cannabunny</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: Georgia, serif;
+    }
+
+    /* INTRO VIDEO */
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1.5s ease;
+    }
+
+    #intro.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #intro video {
+      width: 100%;
+      height: 100%;
+      object-fit: contains;
+      background: #000;
+    }
+
+    /* SKIP INTRO */
+    #skipIntro {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 30px;
+      background: rgba(0,0,0,.45);
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    /* MAIN WEBSITE */
+    #website {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(12,35,20,.72), rgba(5,18,10,.92)),
+        radial-gradient(circle at center, #356b3e, #08150b 70%);
+      color: white;
+      opacity: 0;
+      transition: opacity 1.8s ease;
+    }
+
+    #website.visible {
+      opacity: 1;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 86px);
+      margin: 0 0 20px;
+      font-weight: normal;
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      font-size: clamp(18px, 3vw, 25px);
+      line-height: 1.6;
+      margin: 0 auto 35px;
+    }
+
+    .enter-button {
+      display: inline-block;
+      padding: 15px 32px;
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 40px;
+      color: white;
+      text-decoration: none;
+      font-family: Georgia, serif;
+      font-size: 18px;
+      background: rgba(255,255,255,.08);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      transition: .3s ease;
+    }
+
+    .enter-button:hover {
+      background: rgba(255,255,255,.2);
+      transform: translateY(-2px);
+    }
+
+    .enter-button:active {
+      transform: scale(.98);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- OPENING VIDEO -->
+  <div id="intro">
+    <video
+      id="introVideo"
+      autoplay
+      muted
+      playsinline
+      webkit-playsinline
+      preload="auto"
+    >
+      <source
+        src="07C49AD3-435F-46FB-945C-C07483F6EA1B.mp4"
+        type="video/mp4"
+      >
+    </video>
+
+    <button id="skipIntro" type="button">Skip Intro</button>
+  </div>
+
+  <!-- MAIN WEBSITE -->
+  <main id="website">
+    <section class="hero">
+
+      <h1>The Magical Cannabunny</h1>
+
+      <p>
+        Regenerative agriculture, living soil, compost tea,
+        seeds, bunnies, and a little bit of magic.
+      </p>
+
+      <button
+        id="enterGarden"
+        class="enter-button"
+        type="button"
+      >
+        Enter the Magical Garden
+      </button>
+
+    </section>
+  </main>
+
+  <script>
+    const intro = document.getElementById("intro");
+    const video = document.getElementById("introVideo");
+    const website = document.getElementById("website");
+    const skip = document.getElementById("skipIntro");
+    const enterGarden = document.getElementById("enterGarden");
+
+    let introFinished = false;
+
+    function startIntroVideo() {
+      video.muted = true;
+
+      const playPromise = video.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // iPhone may block autoplay until the user interacts.
+        });
+      }
+    }
+
+    function enterWebsite() {
+      if (introFinished) return;
+
+      introFinished = true;
+
+      video.pause();
+
+      intro.classList.add("hidden");
+      website.classList.add("visible");
+
+      setTimeout(() => {
+        intro.style.display = "none";
+      }, 1500);
+    }
+
+    /* Start video as soon as possible */
+    if (video.readyState >= 2) {
+      startIntroVideo();
+    } else {
+      video.addEventListener("loadeddata", startIntroVideo, {
+        once: true
+      });
+    }
+
+    /* Video finishes */
+    video.addEventListener("ended", function() {
+  window.location.href = "magical-cannabunny-research.html";
+});
+
+    /* Skip button */
+    skip.addEventListener("click", function() {
+  window.location.href = "magical-cannabunny-research.html";
+});
+
+    /* ENTER THE MAGICAL GARDEN */
+enterGarden.addEventListener("click", function() {
+  window.location.href = "magical-cannabunny-research.html";
+});
+
+/* Extra iPhone touch support */
+enterGarden.addEventListener("touchend", function(event) {
+  event.preventDefault();
+  window.location.href = "magical-cannabunny-research.html";
+});
+  </script>
+
+</body>
+</html>
