@@ -1,246 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Magical Cannabunny</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      font-family: Georgia, serif;
-    }
-
-    /* INTRO VIDEO */
-    #intro {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 1.5s ease;
-    }
-
-    #intro.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #intro video {
-      width: 100%;
-      height: 100%;
-      object-fit: contains;
-      background: #000;
-    }
-
-    @media (min-width: 769px) {
-        #intro video {
-          width: auto;
-          height: 100vh;
-          max-width: 100vw;
-          object-fit: contains;
-        }
-    }
-    /* SKIP INTRO */
-    #skipIntro {
-      position: absolute;
-      right: 24px;
-      bottom: 24px;
-      padding: 10px 18px;
-      border: 1px solid rgba(255,255,255,.7);
-      border-radius: 30px;
-      background: rgba(0,0,0,.45);
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-    }
-
-    /* MAIN WEBSITE */
-    #website {
-      min-height: 100vh;
-      background:
-        linear-gradient(rgba(12,35,20,.72), rgba(5,18,10,.92)),
-        radial-gradient(circle at center, #356b3e, #08150b 70%);
-      color: white;
-      opacity: 0;
-      transition: opacity 1.8s ease;
-    }
-
-    #website.visible {
-      opacity: 1;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 8vw, 86px);
-      margin: 0 0 20px;
-      font-weight: normal;
-      letter-spacing: 1px;
-    }
-
-    .hero p {
-      max-width: 760px;
-      font-size: clamp(18px, 3vw, 25px);
-      line-height: 1.6;
-      margin: 0 auto 35px;
-    }
-
-    .enter-button {
-      display: inline-block;
-      padding: 15px 32px;
-      border: 1px solid rgba(255,255,255,.7);
-      border-radius: 40px;
-      color: white;
-      text-decoration: none;
-      font-family: Georgia, serif;
-      font-size: 18px;
-      background: rgba(255,255,255,.08);
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      transition: .3s ease;
-    }
-
-    .enter-button:hover {
-      background: rgba(255,255,255,.2);
-      transform: translateY(-2px);
-    }
-
-    .enter-button:active {
-      transform: scale(.98);
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peep’s Sunflowers | The Magical Cannabunny</title>
+<meta name="description" content="Discover Peep’s Sunflowers, grown at The Magical Cannabunny as part of a regenerative garden built around living soil, pollinators, wildlife and natural inputs.">
+<style>
+:root{--green:#173b2a;--deep:#0d2419;--gold:#f4b82e;--cream:#fff8e8;--leaf:#47724c;--text:#26352b}
+*{box-sizing:border-box} body{margin:0;font-family:Georgia,serif;color:var(--text);background:var(--cream);line-height:1.65}
+.hero{min-height:78vh;background:linear-gradient(90deg,rgba(8,30,19,.78),rgba(8,30,19,.18)),url('sunflower-5.jpeg') center/cover;display:flex;align-items:flex-end;padding:7vw;color:white}
+.hero-inner{max-width:760px}.eyebrow{letter-spacing:.16em;text-transform:uppercase;color:#ffd66a;font:600 14px Arial,sans-serif}
+h1{font-size:clamp(3rem,8vw,6.8rem);line-height:.95;margin:.25em 0}.hero p{font-size:clamp(1.1rem,2vw,1.45rem);max-width:650px}
+.btn{display:inline-block;background:var(--gold);color:#1b2b1d;text-decoration:none;padding:13px 22px;border-radius:30px;font:700 15px Arial,sans-serif;margin-top:10px}
+section{padding:72px 7vw} .wrap{max-width:1150px;margin:auto}
+h2{font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;color:var(--green);margin:0 0 20px}
+.lead{font-size:1.2rem;max-width:850px}
+.story{background:white}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:35px}
+.card{background:#f3ead4;border-radius:18px;padding:28px}.card h3{color:var(--green);font-size:1.35rem;margin-top:0}
+.video{background:var(--deep);color:white}.video h2{color:#ffe08a}.video p{max-width:760px}
+video{width:100%;max-height:720px;border-radius:18px;margin-top:25px;background:#000}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:35px}
+.gallery img{width:100%;height:360px;object-fit:cover;border-radius:14px;display:block}
+.gallery img:nth-child(2),.gallery img:nth-child(6){height:470px}
+.gallery img:nth-child(4){height:470px}
+.find{background:var(--green);color:white;text-align:center}.find h2{color:#ffe08a}.find p{max-width:760px;margin:0 auto 20px}.price{font-size:2rem;color:#ffd45e;font-weight:bold}
+.quote{font-size:clamp(1.7rem,3vw,2.6rem);color:var(--green);font-style:italic;max-width:900px;margin:0 auto;text-align:center}
+footer{background:#0a1c13;color:#d9e5dc;text-align:center;padding:35px 7vw;font:14px Arial,sans-serif}
+@media(max-width:800px){.cards,.gallery{grid-template-columns:1fr}.gallery img,.gallery img:nth-child(2),.gallery img:nth-child(4),.gallery img:nth-child(6){height:auto;max-height:none}.hero{min-height:70vh;padding:9vw 6vw}section{padding:55px 6vw}}
+</style>
 </head>
-
 <body>
 
-  <!-- OPENING VIDEO -->
-  <div id="intro">
-    <video
-      id="introVideo"
-      autoplay
-      muted
-      playsinline
-      webkit-playsinline
-      preload="auto"
-    >
-      <source
-        src="07C49AD3-435F-46FB-945C-C07483F6EA1B.mp4"
-        type="video/mp4"
-      >
-    </video>
-
-    <button id="skipIntro" type="button">Skip Intro</button>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">The Magical Cannabunny</div>
+    <h1>Peep’s Sunflowers</h1>
+    <p>Growing sunshine. Building soil. Supporting life.</p>
+    <p>Our sunflowers are grown as part of a regenerative garden ecosystem—without chemical fertilizers or pesticides, and with our own compost tea and dry bunny manure.</p>
+    <a class="btn" href="#find">Where to Find Peep’s Seeds</a>
   </div>
+</header>
 
-  <!-- MAIN WEBSITE -->
-  <main id="website">
-    <section class="hero">
+<section class="story">
+<div class="wrap">
+  <h2>More Than Just a Flower</h2>
+  <p class="lead">At The Magical Cannabunny, we don't grow sunflowers just because they're beautiful. We plant them throughout our garden and in multiple sunflower beds because they are part of a living ecosystem.</p>
+  <div class="cards">
+    <div class="card"><h3>🌱 Building Living Soil</h3><p>We focus on building our soil naturally, using our own Magical Cannabunny Compost Tea and dry bunny manure as part of our regenerative growing system.</p></div>
+    <div class="card"><h3>🐝 Supporting Pollinators</h3><p>Sunflower blooms bring bees and other pollinators into the garden, adding movement and biodiversity to the growing space.</p></div>
+    <div class="card"><h3>🐦 Supporting Wildlife</h3><p>As the garden matures, sunflowers also provide resources for birds and other wildlife, helping create a garden that is alive with activity.</p></div>
+  </div>
+</div>
+</section>
 
-      <h1>The Magical Cannabunny</h1>
+<section>
+<div class="wrap">
+  <p class="quote">“What comes from our ecosystem goes back into our ecosystem.”</p>
+  <p class="lead" style="margin:28px auto 0;text-align:center">That's the heart of our regenerative approach: work with the soil, work with the plants, and make room for the many forms of life that make a garden an ecosystem.</p>
+</div>
+</section>
 
-      <p>
-        Regenerative agriculture, living soil, compost tea,
-        seeds, bunnies, and a little bit of magic.
-      </p>
+<section class="video">
+<div class="wrap">
+  <h2>See Peep’s Sunflowers Growing</h2>
+  <p>These are our actual sunflowers, growing here at The Magical Cannabunny.</p>
+  <video controls playsinline preload="metadata">
+    <source src="peeps-sunflowers.mp4" type="video/mp4">
+    Your browser does not support video playback.
+  </video>
+</div>
+</section>
 
-      <button
-        id="enterGarden"
-        class="enter-button"
-        type="button"
-      >
-        Enter the Magical Garden
-      </button>
+<section>
+<div class="wrap">
+  <h2>Sunflowers & Phytoremediation</h2>
+  <p class="lead">Sunflowers are also known for their role in phytoremediation—the use of plants to help remove, stabilize, or contain certain contaminants in soil or water. Their roots can take up certain substances from their growing environment, which is one reason sunflowers have been studied for environmental cleanup.</p>
+  <p>For us, this is another reminder that plants can do much more than look beautiful. They can be active partners in a healthy garden ecosystem.</p>
+</div>
+</section>
 
-    </section>
-  </main>
+<section class="story">
+<div class="wrap">
+  <h2>From Our Garden</h2>
+  <p>Every photograph below comes from the sunflowers we grow. No stock flower photography—just Peep’s Sunflowers in their many colors and stages.</p>
+  <div class="gallery">
+    <img src="sunflower-1.jpeg" alt="Dark burgundy sunflower growing in the garden">
+    <img src="sunflower-2.jpeg" alt="Orange sunflower in the garden">
+    <img src="sunflower-3.jpeg" alt="Golden yellow sunflower">
+    <img src="sunflower-4.jpeg" alt="Pink and burgundy bi-color sunflower">
+    <img src="sunflower-5.jpeg" alt="Deep red and orange sunflower">
+    <img src="sunflower-6.jpeg" alt="Dark burgundy sunflower">
+    <img src="sunflower-7.jpeg" alt="Bright golden sunflower">
+    <img src="sunflower-8.jpeg" alt="Sunflower growing among other garden plants">
+    <img src="sunflower-9.jpeg" alt="Golden sunflower close-up">
+  </div>
+</div>
+</section>
 
-  <script>
-    const intro = document.getElementById("intro");
-    const video = document.getElementById("introVideo");
-    const website = document.getElementById("website");
-    const skip = document.getElementById("skipIntro");
-    const enterGarden = document.getElementById("enterGarden");
+<section>
+<div class="wrap">
+  <h2>Grow Some Sunshine of Your Own</h2>
+  <p class="lead">Peep’s Sunflower Seeds are shared with people who want to bring some of that sunshine, color and garden life into their own growing spaces.</p>
+  
+</div>
+</section>
 
-    let introFinished = false;
+<section id="find" class="find">
+<div class="wrap">
+  <h2>Where Can You Find Peep’s Seeds?</h2>
+  <p>Peep’s Sunflower Seeds are <strong>not sold online</strong>. We like meeting the people who grow them!</p>
+  <p>🌻 Available at our <strong>Pop-Up Sales at The Magical Cannabunny</strong><br>
+  🎪 Available at <strong>events we attend</strong></p>
+  
+  <p style="margin-top:24px">Come visit us, meet the Cannabunnies, see what we're growing, and take home a little piece of our garden.</p>
+</div>
+</section>
 
-    function startIntroVideo() {
-      video.muted = true;
-
-      const playPromise = video.play();
-
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // iPhone may block autoplay until the user interacts.
-        });
-      }
-    }
-
-    function enterWebsite() {
-      if (introFinished) return;
-
-      introFinished = true;
-
-      video.pause();
-
-      intro.classList.add("hidden");
-      website.classList.add("visible");
-
-      setTimeout(() => {
-        intro.style.display = "none";
-      }, 1500);
-    }
-
-    /* Start video as soon as possible */
-    if (video.readyState >= 2) {
-      startIntroVideo();
-    } else {
-      video.addEventListener("loadeddata", startIntroVideo, {
-        once: true
-      });
-    }
-
-    /* Video finishes */
-    video.addEventListener("ended", function() {
-  window.location.href = "magical-cannabunny-research.html";
-});
-
-    /* Skip button */
-    skip.addEventListener("click", function() {
-  window.location.href = "magical-cannabunny-research.html";
-});
-
-    /* ENTER THE MAGICAL GARDEN */
-enterGarden.addEventListener("click", function() {
-  window.location.href = "magical-cannabunny-research.html";
-});
-
-/* Extra iPhone touch support */
-enterGarden.addEventListener("touchend", function(event) {
-  event.preventDefault();
-  window.location.href = "magical-cannabunny-research.html";
-});
-  </script>
+<footer>
+  <strong>The Magical Cannabunny</strong><br>
+  Peep’s Sunflowers · Grown with love in our regenerative garden
+</footer>
 
 </body>
 </html>
